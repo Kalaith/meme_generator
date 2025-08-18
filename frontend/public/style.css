@@ -1,0 +1,94 @@
+/* style.css */
+:root {
+  /* Colors */
+  --color-background: rgba(252, 252, 249, 1);
+  --color-surface: rgba(255, 255, 253, 1);
+  --color-text: rgba(19, 52, 59, 1);
+  --color-text-secondary: rgba(98, 108, 113, 1);
+  --color-primary: rgba(33, 128, 141, 1);
+  --color-primary-hover: rgba(29, 116, 128, 1);
+  --color-primary-active: rgba(26, 104, 115, 1);
+  --color-secondary: rgba(94, 82, 64, 0.12);
+  --color-secondary-hover: rgba(94, 82, 64, 0.2);
+  --color-secondary-active: rgba(94, 82, 64, 0.25);
+  --color-border: rgba(94, 82, 64, 0.2);
+  --color-btn-primary-text: rgba(252, 252, 249, 1);
+  --color-card-border: rgba(94, 82, 64, 0.12);
+  --color-card-border-inner: rgba(94, 82, 64, 0.12);
+  --color-error: rgba(192, 21, 47, 1);
+  --color-success: rgba(33, 128, 141, 1);
+  --color-warning: rgba(168, 75, 47, 1);
+  --color-info: rgba(98, 108, 113, 1);
+  --color-focus-ring: rgba(33, 128, 141, 0.4);
+  --color-select-caret: rgba(19, 52, 59, 0.8);
+  /* ...existing code... */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .editor-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    padding: var(--space-8);
+    gap: 0;
+  }
+
+  .preview-panel {
+    grid-row: 1;
+    margin-bottom: var(--space-8);
+  }
+
+  .tools-panel {
+    grid-row: 2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: var(--space-16);
+    transform: translateY(80%);
+    transition: transform var(--duration-normal) var(--ease-standard);
+    z-index: 100;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .tools-panel:hover,
+  .tools-panel:focus-within {
+    transform: translateY(0);
+  }
+
+  .tools-panel::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  .editor-header {
+    padding: var(--space-12) var(--space-16);
+  }
+
+  .editor-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .header-actions {
+    gap: var(--space-8);
+  }
+
+  .btn {
+    padding: var(--space-6) var(--space-12);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ...rest of style.css content... */

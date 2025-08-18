@@ -1,0 +1,92 @@
+/* Meme Editor Layout */
+.meme-editor {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-16) var(--space-24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+}
+
+.editor-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-16);
+  padding: var(--space-16);
+}
+
+/* Tools Panel */
+.tools-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
+  overflow-y: auto;
+}
+
+.tool-section {
+  margin-bottom: var(--space-24);
+}
+
+.tool-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-12);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .editor-content {
+    grid-template-columns: 1fr;
+    padding: var(--space-8);
+  }
+
+  .tools-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    transform: translateY(80%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    max-height: 80vh;
+  }
+
+  .tools-panel:hover,
+  .tools-panel:focus-within {
+    transform: translateY(0);
+  }
+
+  .tools-panel::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  .editor-header {
+    padding: var(--space-12) var(--space-16);
+  }
+
+  .editor-title {
+    font-size: var(--font-size-xl);
+  }
+}

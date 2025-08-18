@@ -1,0 +1,5 @@
+/* Import all CSS styles for the meme generator */
+@import './App.css';
+@import './styles/variables.css';
+@import './styles/buttons.css';
+@import './styles/forms.css';

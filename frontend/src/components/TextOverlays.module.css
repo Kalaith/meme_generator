@@ -1,0 +1,42 @@
+/* Text Overlays */
+.text-overlays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.text-overlay {
+  position: absolute;
+  color: white;
+  font-family: Impact, Arial Black, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  -webkit-text-stroke: 2px black;
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  cursor: move;
+  pointer-events: auto;
+  user-select: none;
+  min-width: 100px;
+  text-align: center;
+  padding: var(--space-8);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease;
+  transform: translate(-50%, -50%);
+  word-wrap: break-word;
+  max-width: 80%;
+  line-height: 1.1;
+}
+
+.text-overlay:hover {
+  border-color: var(--color-primary);
+}
+
+.text-overlay.selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(50, 184, 198, 0.3);
+}
