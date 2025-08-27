@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import MemeEditor from './components/MemeEditor';
+import MemeEditorPage from './pages/MemeEditorPage';
 
 const App: React.FC = () => {
-  return <MemeEditor />;
+  return <MemeEditorPage />;
 };
 
 export default App;
