@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { TextOverlayControlsProps, TextOverlay } from '../types';
+import type { TextOverlayControlsProps } from '../types';
 import CustomDropdown from './CustomDropdown';
 
-const TextOverlayControls: React.FC<TextOverlayControlsProps> = ({ 
-  onAddText, 
-  onDeleteText, 
-  selectedOverlay, 
-  onUpdateSelectedText 
+const TextOverlayControls: React.FC<TextOverlayControlsProps> = ({
+  onAddText,
+  onDeleteText,
+  selectedOverlay,
+  onUpdateSelectedText,
 }) => {
   const [text, setText] = useState<string>('');
   const [font, setFont] = useState<string>('Impact, Arial Black, sans-serif');
@@ -60,7 +60,10 @@ const TextOverlayControls: React.FC<TextOverlayControlsProps> = ({
   return (
     <div className="tool-section">
       <h3 className="tool-title">✨ Text Overlay</h3>
-      <button className="btn btn--primary btn--full-width" onClick={handleAddText}>
+      <button
+        className="btn btn--primary btn--full-width"
+        onClick={handleAddText}
+      >
         Add Text
       </button>
       <div className="text-controls">
@@ -73,14 +76,18 @@ const TextOverlayControls: React.FC<TextOverlayControlsProps> = ({
             onChange={e => handleTextChange(e.target.value)}
             placeholder="Enter your meme text..."
           />
-        </div>        <div className="form-group">
+        </div>{' '}
+        <div className="form-group">
           <label className="form-label">Font Style</label>
           <CustomDropdown
             options={[
-              { value: "Impact, Arial Black, sans-serif", label: "Impact (Classic)" },
-              { value: "Arial, sans-serif", label: "Arial" },
-              { value: "Comic Sans MS, cursive", label: "Comic Sans" },
-              { value: "Montserrat, sans-serif", label: "Montserrat" }
+              {
+                value: 'Impact, Arial Black, sans-serif',
+                label: 'Impact (Classic)',
+              },
+              { value: 'Arial, sans-serif', label: 'Arial' },
+              { value: 'Comic Sans MS, cursive', label: 'Comic Sans' },
+              { value: 'Montserrat, sans-serif', label: 'Montserrat' },
             ]}
             value={font}
             onChange={handleFontChange}
@@ -112,7 +119,10 @@ const TextOverlayControls: React.FC<TextOverlayControlsProps> = ({
         </div>
         {selectedOverlay && (
           <div className="form-group">
-            <button className="btn btn--secondary btn--full-width" onClick={onDeleteText}>
+            <button
+              className="btn btn--secondary btn--full-width"
+              onClick={onDeleteText}
+            >
               Delete Selected Text
             </button>
           </div>

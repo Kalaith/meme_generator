@@ -10,24 +10,24 @@
   --color-secondary: rgba(119, 124, 124, 0.15);
   --color-secondary-hover: rgba(119, 124, 124, 0.25);
   --color-btn-primary-text: rgba(19, 52, 59, 1);
-  
+
   --font-size-sm: 12px;
   --font-size-base: 14px;
   --font-size-lg: 16px;
   --font-size-xl: 18px;
   --font-size-2xl: 20px;
   --font-size-3xl: 24px;
-  
+
   --space-4: 4px;
   --space-8: 8px;
   --space-12: 12px;
   --space-16: 16px;
   --space-24: 24px;
-  
+
   --radius-sm: 6px;
   --radius-base: 8px;
   --radius-lg: 12px;
-  
+
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.16);
 }
@@ -40,7 +40,8 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--color-background);
   color: var(--color-text);
   line-height: 1.5;
@@ -128,7 +129,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #1FB8CD 0%, #5D878F 100%);
+  background: linear-gradient(135deg, #1fb8cd 0%, #5d878f 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -256,10 +257,18 @@ body {
 .text-overlay {
   position: absolute;
   color: white;
-  font-family: Impact, Arial Black, sans-serif;
+  font-family:
+    Impact,
+    Arial Black,
+    sans-serif;
   font-size: 32px;
-  font-weight: bold;  -webkit-text-stroke: 2px black;
-  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  font-weight: bold;
+  -webkit-text-stroke: 2px black;
+  text-shadow:
+    2px 2px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
   cursor: move;
   pointer-events: auto;
   user-select: none;
@@ -521,7 +530,7 @@ body {
     min-height: 48px; /* Larger touch targets on mobile */
     padding: var(--space-16);
   }
-  
+
   .dropdown-menu {
     max-height: 50vh; /* Don't take up too much screen space */
   }

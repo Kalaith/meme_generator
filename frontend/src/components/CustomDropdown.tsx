@@ -17,8 +17,8 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
   options,
   value,
   onChange,
-  placeholder = "Select an option",
-  className = ""
+  placeholder = 'Select an option',
+  className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,10 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
   };
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setIsOpen(false);
     }
   };
@@ -76,20 +79,26 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
         <span className="dropdown-value">
           {selectedOption ? selectedOption.label : placeholder}
         </span>
-        <svg 
+        <svg
           className={`dropdown-arrow ${isOpen ? 'rotated' : ''}`}
-          width="12" 
-          height="12" 
-          viewBox="0 0 12 12" 
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
           fill="none"
         >
-          <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path
+            d="M3 4.5L6 7.5L9 4.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </button>
-      
+
       {isOpen && (
         <div className="dropdown-menu" role="listbox">
-          {options.map((option) => (
+          {options.map(option => (
             <button
               key={option.value}
               type="button"

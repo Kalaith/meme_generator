@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Notification, NotificationType } from '../types';
+import type { Notification, NotificationType } from '../types';
 
 const NotificationManager: React.FC = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
-  const addNotification = (message: string, type: NotificationType = 'info', duration = 3000): void => {
+  const addNotification = (
+    message: string,
+    type: NotificationType = 'info',
+    duration = 3000
+  ): void => {
     const id = Date.now();
     const notification: Notification = { id, message, type };
-    
+
     setNotifications(prev => [...prev, notification]);
-    
+
     if (duration > 0) {
       setTimeout(() => {
         removeNotification(id);
@@ -30,15 +34,20 @@ const NotificationManager: React.FC = () => {
 
   const getIcon = (type: NotificationType): string => {
     switch (type) {
-      case 'success': return '✅';
-      case 'error': return '❌';
-      case 'warning': return '⚠️';
-      default: return 'ℹ️';
+      case 'success':
+        return '✅';
+      case 'error':
+        return '❌';
+      case 'warning':
+        return '⚠️';
+      default:
+        return 'ℹ️';
     }
-  };  return (
+  };
+  return (
     <div className="notification-container">
       {notifications.map(notification => (
-        <div 
+        <div
           key={notification.id}
           className={`notification notification--${notification.type} notification--show`}
         >
@@ -46,7 +55,7 @@ const NotificationManager: React.FC = () => {
           <div className="notification__content">
             <div className="notification__message">{notification.message}</div>
           </div>
-          <button 
+          <button
             className="notification__close"
             onClick={() => removeNotification(notification.id)}
           >

@@ -31,26 +31,26 @@ interface MemeActions {
   loadMeme: (memeId: string) => void;
   deleteMeme: (memeId: string) => void;
   duplicateMeme: (memeId: string) => void;
-  
+
   // Image handling
   setImage: (image: string) => void;
   addToRecentImages: (image: string) => void;
-  
+
   // Text overlay management
   addTextOverlay: (overlay: Omit<TextOverlay, 'id' | 'position'>) => void;
   updateTextOverlay: (id: number, updates: Partial<TextOverlay>) => void;
   deleteTextOverlay: (id: number) => void;
   selectOverlay: (id: number | null) => void;
   clearAllOverlays: () => void;
-  
+
   // Export
   recordExport: (format: ExportFormat) => void;
-  
+
   // Notifications
   addNotification: (message: string, type: Notification['type']) => void;
   removeNotification: (id: number) => void;
   clearNotifications: () => void;
-  
+
   // Reset
   resetCurrentMeme: () => void;
   clearAll: () => void;
@@ -72,7 +72,7 @@ const createEmptyMeme = (): Meme => ({
 
 export const useMemeStore = create<MemeStore>()(
   persist(
-    (set, get) => ({
+    (set, _get) => ({
       // State
       currentMeme: createEmptyMeme(),
       savedMemes: [],
@@ -88,8 +88,8 @@ export const useMemeStore = create<MemeStore>()(
           selectedOverlayId: null,
         }),
 
-      saveMeme: (name) =>
-        set((state) => {
+      saveMeme: name =>
+        set(state => {
           if (!state.currentMeme) return state;
 
           const memeToSave: Meme = {
@@ -98,10 +98,15 @@ export const useMemeStore = create<MemeStore>()(
             updatedAt: new Date(),
           };
 
-          const existingIndex = state.savedMemes.findIndex(m => m.id === memeToSave.id);
-          const updatedSavedMemes = existingIndex >= 0
-            ? state.savedMemes.map((m, i) => i === existingIndex ? memeToSave : m)
-            : [...state.savedMemes, memeToSave];
+          const existingIndex = state.savedMemes.findIndex(
+            m => m.id === memeToSave.id
+          );
+          const updatedSavedMemes =
+            existingIndex >= 0
+              ? state.savedMemes.map((m, i) =>
+                  i === existingIndex ? memeToSave : m
+                )
+              : [...state.savedMemes, memeToSave];
 
           return {
             savedMemes: updatedSavedMemes,
@@ -109,21 +114,24 @@ export const useMemeStore = create<MemeStore>()(
           };
         }),
 
-      loadMeme: (memeId) =>
-        set((state) => {
+      loadMeme: memeId =>
+        set(state => {
           const meme = state.savedMemes.find(m => m.id === memeId);
           return meme ? { currentMeme: meme, selectedOverlayId: null } : state;
         }),
 
-      deleteMeme: (memeId) =>
-        set((state) => ({
+      deleteMeme: memeId =>
+        set(state => ({
           savedMemes: state.savedMemes.filter(m => m.id !== memeId),
-          currentMeme: state.currentMeme?.id === memeId ? createEmptyMeme() : state.currentMeme,
+          currentMeme:
+            state.currentMeme?.id === memeId
+              ? createEmptyMeme()
+              : state.currentMeme,
           exportHistory: state.exportHistory.filter(e => e.memeId !== memeId),
         })),
 
-      duplicateMeme: (memeId) =>
-        set((state) => {
+      duplicateMeme: memeId =>
+        set(state => {
           const originalMeme = state.savedMemes.find(m => m.id === memeId);
           if (!originalMeme) return state;
 
@@ -147,21 +155,24 @@ export const useMemeStore = create<MemeStore>()(
         }),
 
       // Image Handling
-      setImage: (image) =>
-        set((state) => ({
+      setImage: image =>
+        set(state => ({
           currentMeme: state.currentMeme
             ? { ...state.currentMeme, image, updatedAt: new Date() }
             : state.currentMeme,
         })),
 
-      addToRecentImages: (image) =>
-        set((state) => ({
-          recentImages: [image, ...state.recentImages.filter(img => img !== image)].slice(0, 10),
+      addToRecentImages: image =>
+        set(state => ({
+          recentImages: [
+            image,
+            ...state.recentImages.filter(img => img !== image),
+          ].slice(0, 10),
         })),
 
       // Text Overlay Management
-      addTextOverlay: (overlayData) =>
-        set((state) => {
+      addTextOverlay: overlayData =>
+        set(state => {
           if (!state.currentMeme) return state;
 
           const newOverlay: TextOverlay = {
@@ -181,7 +192,7 @@ export const useMemeStore = create<MemeStore>()(
         }),
 
       updateTextOverlay: (id, updates) =>
-        set((state) => {
+        set(state => {
           if (!state.currentMeme) return state;
 
           return {
@@ -195,24 +206,27 @@ export const useMemeStore = create<MemeStore>()(
           };
         }),
 
-      deleteTextOverlay: (id) =>
-        set((state) => {
+      deleteTextOverlay: id =>
+        set(state => {
           if (!state.currentMeme) return state;
 
           return {
             currentMeme: {
               ...state.currentMeme,
-              textOverlays: state.currentMeme.textOverlays.filter(overlay => overlay.id !== id),
+              textOverlays: state.currentMeme.textOverlays.filter(
+                overlay => overlay.id !== id
+              ),
               updatedAt: new Date(),
             },
-            selectedOverlayId: state.selectedOverlayId === id ? null : state.selectedOverlayId,
+            selectedOverlayId:
+              state.selectedOverlayId === id ? null : state.selectedOverlayId,
           };
         }),
 
-      selectOverlay: (id) => set({ selectedOverlayId: id }),
+      selectOverlay: id => set({ selectedOverlayId: id }),
 
       clearAllOverlays: () =>
-        set((state) => ({
+        set(state => ({
           currentMeme: state.currentMeme
             ? { ...state.currentMeme, textOverlays: [], updatedAt: new Date() }
             : state.currentMeme,
@@ -220,8 +234,8 @@ export const useMemeStore = create<MemeStore>()(
         })),
 
       // Export
-      recordExport: (format) =>
-        set((state) => {
+      recordExport: format =>
+        set(state => {
           if (!state.currentMeme) return state;
 
           const exportRecord = {
@@ -237,7 +251,7 @@ export const useMemeStore = create<MemeStore>()(
 
       // Notifications
       addNotification: (message, type) =>
-        set((state) => {
+        set(state => {
           const notification: Notification = {
             id: Date.now(),
             message,
@@ -249,8 +263,8 @@ export const useMemeStore = create<MemeStore>()(
           };
         }),
 
-      removeNotification: (id) =>
-        set((state) => ({
+      removeNotification: id =>
+        set(state => ({
           notifications: state.notifications.filter(n => n.id !== id),
         })),
 
@@ -275,7 +289,7 @@ export const useMemeStore = create<MemeStore>()(
     }),
     {
       name: 'meme-generator-storage',
-      partialize: (state) => ({
+      partialize: state => ({
         savedMemes: state.savedMemes,
         recentImages: state.recentImages,
         exportHistory: state.exportHistory,
