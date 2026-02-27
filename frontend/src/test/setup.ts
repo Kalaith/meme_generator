@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { afterEach, beforeAll, vi } from 'vitest';
 
 // Setup global test environment
 beforeAll(() => {
@@ -13,7 +14,7 @@ beforeAll(() => {
   // Mock window.matchMedia
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
-    value: vi.fn().mockImplementation(query => ({
+    value: vi.fn().mockImplementation((query: string) => ({
       matches: false,
       media: query,
       onchange: null,
