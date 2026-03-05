@@ -19,11 +19,6 @@
 ._*
 .DS_Store
 .DS_Store?
-.env
-.env.development.local
-.env.local
-.env.production.local
-.env.test.local
 .idea/
 .pnp.js
 .Spotlight-V100
@@ -42,3 +37,4 @@ pids
 Thumbs.db
 yarn-debug.log*
 yarn-error.log*
+**/.env*
