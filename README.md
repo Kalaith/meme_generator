@@ -22,13 +22,10 @@ A modern web app for creating, editing, and exporting memes. Built with React an
 	```sh
 	git clone <repo-url>
 	```
-2. Navigate to the frontend directory:
+2. From the monorepo root, install the shared workspace dependencies:
 	```sh
-	cd frontend
-	```
-3. Install dependencies:
-	```sh
-	npm install
+	cd D:\WebHatchery
+	npm ci
 	```
 
 ### Running the App
